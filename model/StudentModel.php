@@ -29,23 +29,23 @@ function getAllEvents()
 
 function editStudent() 
 {
-	$date = isset($_POST['date']) ? $_POST['date'] : null;
+	$calDate = isset($_POST['calDate']) ? $_POST['calDate'] : null;
 	$location = isset($_POST['location']) ? $_POST['location'] : null;
 	$event = isset($_POST['event']) ? $_POST['event'] : null;
 	$id = isset($_POST['id']) ? $_POST['id'] : null;
 	
-	if (strlen($date) == 0 || strlen($location) == 0 || strlen($event) == 0) {
+	if (strlen($calDate) == 0 || strlen($location) == 0 || strlen($event) == 0) {
 		return false;
 	}
 	
 	$db = openDatabaseConnection();
 
-	$sql = "UPDATE kalender SET student_firstname = :firstname, student_lastname = :lastname, student_gender = :gender WHERE student_id = :id";
+	$sql = "UPDATE kalender SET cal_date = :calDate, cal_location = :location, cal_event = :event WHERE cal_id = :id";
 	$query = $db->prepare($sql);
 	$query->execute(array(
-		':firstname' => $firstname,
-		':lastname' => $lastname,
-		':gender' => $gender,
+		':calDate' => $calDate,
+		':location' => $location,
+		':event' => $event,
 		':id' => $id));
 
 	$db = null;
@@ -73,22 +73,22 @@ function deleteStudent($id = null)
 
 function createStudent() 
 {
-	$firstname = isset($_POST['firstname']) ? $_POST['firstname'] : null;
-	$lastname = isset($_POST['lastname']) ? $_POST['lastname'] : null;
-	$gender = isset($_POST['gender']) ? $_POST['gender'] : null;
+	$calDate = isset($_POST['calDate']) ? $_POST['calDate'] : null;
+	$location = isset($_POST['location']) ? $_POST['location'] : null;
+	$event = isset($_POST['event']) ? $_POST['event'] : null;
 	
-	if (strlen($firstname) == 0 || strlen($lastname) == 0 || strlen($gender) == 0) {
+	if (strlen($calDate) == 0 || strlen($location) == 0 || strlen($event) == 0) {
 		return false;
 	}
 	
 	$db = openDatabaseConnection();
 
-	$sql = "INSERT INTO students(student_firstname, student_lastname, student_gender) VALUES (:firstname, :lastname, :gender)";
+	$sql = "INSERT INTO kalender(cal_date, cal_location, cal_event) VALUES (:calDate, :location, :event)";
 	$query = $db->prepare($sql);
 	$query->execute(array(
-		':firstname' => $firstname,
-		':lastname' => $lastname,
-		':gender' => $gender));
+		':calDate' => $date,
+		':location' => $location,
+		':event' => $event));
 
 	$db = null;
 	
