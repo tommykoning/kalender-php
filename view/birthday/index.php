@@ -1,26 +1,32 @@
-<div class="container">
-	<table border="1">
-		<tr>
-			<th>naam</th>
-			<th>maand</th>
-			<th>dag</th>
-			<th>jaar</th>
-			<th colspan="2">Actie</th>
-		</tr>
+<?php
+	$month = array('jan', 'feb', 'mar', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'oct',  'nov', 'dec');
+	$currentMonth = null; 
+	$currentDay = null;
+
+	foreach ($birthdays as $birthday ) {
+		if ($currentMonth == null || $currentMonth != $birthday['month']) {
+?>	
+		<h1><?= $month[$birthday['month'] - 1]; ?></h1>
+<?php 
+			$currentMonth = $birthday['month'];
+		}
+
+		if ($currentDay == null || $currentDay != $birthday['day']) {
+?>
+		<h2><?= $birthday['day']; ?></h2>
+
+<?php 
+			$currentDay = $birthday['day'];
+		}
+?>
+		<p>
+			<a href="<?= URL ?> 'birthday/edit' ?>">
+				<span> <?= $birthday['person']; ?> </span>
+			</a>
+				<span> (<?= $birthday['year']; ?> )</span>
+			<a href="<?= URL ?> '/birthday/delete' . $birthday['Id']; ?>"> [X] </a>
+		</p>
 		
-		<?php foreach ($birthdays as $birthday) { 
 
-			?>
-		<tr>
-			<td><?= $birthday['person']; ?></td>
-			<td><?= $birthday['month']; ?></td>
-			<td><?= $birthday['day']; ?></td>
-			<td><?= $birthday['year']; ?></td>
-			<td><a href="<?= URL ?>birthday/edit/<?= $birthday['id'] ?>">Edit</a></td>
-			<td><a href="<?= URL ?>birthday/delete/<?= $birthday['id'] ?>">Delete</a></td>
-		</tr>
-		<?php } ?>
-
-	</table>
-	<a href="<?= URL ?>birthday/create">Toevoegen</a>
-</div>
+<?php } ?>
+<p><a href="<?= URL ?>birthday/create">Toevoegen</a></p>

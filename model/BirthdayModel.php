@@ -61,7 +61,7 @@ function deleteBirthday($id = null)
 	
 	$db = openDatabaseConnection();
 
-	$sql = "DELETE FROM birthdays WHERE birthday_id=:id ";
+	$sql = "DELETE FROM birthdays WHERE id = :id ";
 	$query = $db->prepare($sql);
 	$query->execute(array(
 		':id' => $id));
@@ -78,7 +78,7 @@ function createBirthday()
 	$day = isset($_POST['day']) ? $_POST['day'] : null;
 	$month = isset($_POST['month']) ? $_POST['month'] : null;
 	
-	if (strlen($year) == 0 || strlen($day) == 0 || strlen($month) == 0) {
+	if (strlen($person) == 0 ||strlen($year) == 0 || strlen($day) == 0 || strlen($month) == 0) {
 		return false;
 	}
 	

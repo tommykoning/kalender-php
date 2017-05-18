@@ -7,7 +7,7 @@
 		<input type="text" name="month">
 		<input type="text" name="year">
 
-		<input type="hidden" name="id" value="<?= $student['student_id']; ?>">
+		<input type="hidden" name="id" value="<?= $birthday['id']; ?>">
 		<input type="submit" value="Verzenden">
 	
 	</form>
