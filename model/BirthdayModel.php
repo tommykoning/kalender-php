@@ -40,7 +40,7 @@ function editBirthday()
 	
 	$db = openDatabaseConnection();
 
-	$sql = "UPyear kalender SET person = :person, day = :day, month = :month WHERE id = :id";
+	$sql = "UPyear calender SET person = :person, day = :day, month = :month WHERE id = :id";
 	$query = $db->prepare($sql);
 	$query->execute(array(
 		':month' => $month,
@@ -84,7 +84,7 @@ function createBirthday()
 	
 	$db = openDatabaseConnection();
 
-	$sql = "INSERT INTO birthdays(person, day, month, year) VALUES (:person, :day, :year, :month)";
+	$sql = "INSERT INTO birthdays(person, day, month, year) VALUES (:person, :day, :month, :year)";
 	$query = $db->prepare($sql);
 	$query->execute(array(
 		':person' => $person,

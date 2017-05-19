@@ -20,11 +20,11 @@
 		}
 ?>
 		<p>
-			<a href="<?= URL ?> 'birthday/edit' ?>">
+			<a href="<?= URL ?>birthday/edit/<?= $birthday['id'] ?>">
 				<span> <?= $birthday['person']; ?> </span>
 			</a>
 				<span> (<?= $birthday['year']; ?> )</span>
-			<a href="<?= URL ?> '/birthday/delete' . $birthday['Id']; ?>"> [X] </a>
+			<a href="<?= URL ?>birthday/delete/<?= $birthday['id'] ?>"> [X] </a>
 		</p>
 		
 
